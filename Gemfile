@@ -3,12 +3,22 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.1'
 gem 'haml', '3.1.4'
 gem 'devise', '2.0.0'
+gem 'omniauth-facebook', '1.2.0'
+gem 'thin', '1.3.1'
+gem 'paperclip', '2.5.2'
+gem 'bcrypt-ruby', '3.0.1'
+gem 'gravatar_image_tag', '1.0.0'
+gem 'will_paginate', '3.0.3'
+gem 'acts-as-taggable-on', '2.2.2'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
   gem 'sqlite3', '1.3.5'
+  gem 'foreman', '0.37.2'
+  gem 'faker', '1.0.1'
 end
 
 group :production do
