@@ -1,21 +1,30 @@
 %h1 Root Page
-- if user_signed_in?
+- if signed_in?
   %p
     You are signed in as
-    = current_user.email
-    \.
-  %hr
-  %p= link_to 'sign out', destroy_user_session_path, :method => :delete
-  %hr
-- else
-  %p Not signed in. Please sign in.
   %ul
-    %li= link_to 'Facebook', '/auth/facebook'
-    %li= link_to 'Google', '/auth/google_oauth2'
-    %li= link_to 'Twitter', '/auth/twitter'
-    %li= link_to 'Github', '/auth/github'
-    %li= link_to 'Email & Password with Devise 2.0.0', new_user_session_path
+  - if user_signed_in?
+    %li
+      a user:
+      = current_user.email
+      = link_to 'sign out', destroy_user_session_path, :method => :delete
+  - if admin_signed_in?
+    %li
+      an admin:
+      = current_admin.email
+      = link_to 'sign out', destroy_admin_session_path, :method => :delete
   %hr
+%p
+  Please sign in as a
+  = link_to 'user', new_user_session_path unless user_signed_in?
+  = link_to 'admin', new_admin_session_path unless admin_signed_in?
+%ul
+  %li= link_to 'Facebook', '/auth/facebook'
+  %li= link_to 'Google', '/auth/google_oauth2'
+  %li= link_to 'Twitter', '/auth/twitter'
+  %li= link_to 'Github', '/auth/github'
+  %li= link_to 'Email & Password with Devise 2.0.0', new_user_session_path
+%hr
 
 %h1 Readme
 
