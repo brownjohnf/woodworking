@@ -19,11 +19,9 @@
   = link_to 'user', new_user_session_path unless user_signed_in?
   = link_to 'admin', new_admin_session_path unless admin_signed_in?
 %ul
-  %li= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
   %li= link_to 'Google', '/auth/google_oauth2'
   %li= link_to 'Twitter', '/auth/twitter'
   %li= link_to 'Github', '/auth/github'
-  %li= link_to 'Email & Password with Devise 2.0.0', new_user_session_path
 %hr
 
 %h1 Readme
@@ -61,3 +59,19 @@
 %hr
 %p The app/assets/stylesheets/application.css loads vendor sheets, plus the default.css.scss file, into which all SASS sheets should be @imported. All SASS sheets to be imported need to begin with an underscore.
 %p The app/assets/javascripts/application.js loads all .js files, as well as the jquery-ui plugin, served from rails.
+
+%h2 Setup
+
+%ul
+  %li Set both your development and production API keys and secrets in /config/initializers/dev_environment.rb
+  %li Add yourself as an admin using the console [ User.create!(:email => 'YOUR_EMAIL', :password => 'YOUR_PASSWORD') ]
+  %li Start the server! [ foreman start ] It'll be available at localhost:5000
+
+%h2 Deploying on Heroku (assumes an existing git repository)
+
+%code
+  gem install heroku
+  heroku keys:add
+  heroku create --stack cedar
+  git checkout -b heroku
+  git push heroku heroku:master
