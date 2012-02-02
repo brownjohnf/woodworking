@@ -15,7 +15,7 @@
       = link_to 'sign out', destroy_admin_session_path, :method => :delete
   %hr
 %p
-  Please sign in as a
+  Please sign in as:
   = link_to 'user', new_user_session_path unless user_signed_in?
   = link_to 'admin', new_admin_session_path unless admin_signed_in?
 %ul
