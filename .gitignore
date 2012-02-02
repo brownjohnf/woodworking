@@ -21,3 +21,4 @@ doc/
 .project
 .DS_Store
 dev_environment.rb
+pro_environment.rb
