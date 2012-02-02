@@ -21,8 +21,10 @@ $background: #fff;
 
 // site-wide directives
 
-h1 {
-
+body {
+  code {
+    white-space: pre-line;
+  }
 }
 
 
