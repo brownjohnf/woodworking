@@ -11,6 +11,9 @@ gem 'gravatar_image_tag', '1.0.0'
 gem 'will_paginate', '3.0.3'
 gem 'acts-as-taggable-on', '2.2.2'
 
+gem 'sms_fu', '1.1.2'
+gem 'pony', '1.4'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
