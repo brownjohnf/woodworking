@@ -14,8 +14,9 @@
           = link_to 'sign out', destroy_user_session_path, :method => :delete
           |
         = link_to 'sign in as user', new_user_session_path unless user_signed_in?
-        |
-        = link_to 'sign in as admin', new_admin_session_path unless admin_signed_in?
+        - if user_signed_in?
+          |
+          = link_to 'sign in as admin', new_admin_session_path unless admin_signed_in?
         |
         = link_to 'Profile', current_user
         |
