@@ -1,4 +1,8 @@
-# Readme
+# Woodworking App
+
+This is an app which aims to assist the woodworking community in drawing together online. It is based on my own DeviseBase Ruby on Rails starting point.
+
+# DeviseBase Readme
 
 The Gemfile contains both thin and foreman, and it is recommended you use thin as your client and foreman to manage it.
 
