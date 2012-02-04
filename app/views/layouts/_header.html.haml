@@ -1,0 +1,23 @@
+%header
+  .container
+    .row
+      .span-24.last
+        %h1 Woodworking - Not For Pussies
+        - if signed_in?
+          You are signed in. |
+          - if user_signed_in?
+            = current_user.email
+            [ user ]
+          - if admin_signed_in?
+            = current_admin.email
+            [ admin ]
+          = link_to 'sign out', destroy_user_session_path, :method => :delete
+          |
+        = link_to 'sign in as user', new_user_session_path unless user_signed_in?
+        |
+        = link_to 'sign in as admin', new_admin_session_path unless admin_signed_in?
+        |
+        = link_to 'Profile', current_user
+        |
+        = link_to 'Users', users_path
+        %hr

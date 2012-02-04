@@ -1,5 +1,13 @@
 DeviseBase::Application.routes.draw do
 
+  resources :users, :only => [:index, :show] do
+    member do
+      get :following, :followers
+    end
+  end
+
+  resources :relationships, :only => [:create, :destroy]
+
   devise_for :admins
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

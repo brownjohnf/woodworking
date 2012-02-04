@@ -9,4 +9,6 @@
   %body
     = render 'layouts/notice', :notice => notice
     = render 'layouts/alert', :alert => alert
-    = yield
+    = render 'layouts/header'
+    .container
+      = yield
