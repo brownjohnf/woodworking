@@ -1,10 +1,15 @@
 DeviseBase::Application.routes.draw do
 
-  resources :sms, :only => [:new, :create]
+  #resources :users, :only => [:index, :show]
 
   devise_for :admins
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+    get 'users/sign_in' => 'devise/sessions#new'
+    get 'users/edit' => 'devise/registrations#edit'
+    get 'users' => 'users#index'
+    get 'users/:id' => 'users#show'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
