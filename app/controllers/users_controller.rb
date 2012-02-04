@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   
   before_filter :authenticate_user!
-  
+
   def index
-    @title = 'View Users'
+    @title = 'All users'
     @users = User.paginate(:page => params[:page])
   end
 
@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
   end
-
   def edit
     @user = User.find(params[:id])
   end

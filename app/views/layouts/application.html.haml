@@ -10,10 +10,13 @@
     = render 'layouts/header'
     = render 'layouts/notice', :notice => notice
     = render 'layouts/alert', :alert => alert
-    = yield
-    - if Rails.env.development?
-      = debug(params)
-      Class: #{params[:controller].parameterize}
-      %br
-      ID: #{params[:action].parameterize}
+    .container
+      = yield
+      - if Rails.env.development?
+        .row
+          .span-24.last
+            = debug(params)
+            Class: #{params[:controller].parameterize}
+            %br
+            ID: #{params[:action].parameterize}
     = render 'layouts/footer'

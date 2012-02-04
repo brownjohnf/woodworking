@@ -1,6 +1,6 @@
-%h2= user.name
 %p
-  = user.email
+  = user.name
+  = link_to 'view user', user
   %br
-  = link_to 'go to user', user
-  &rang;
+  = user.email
+  %hr

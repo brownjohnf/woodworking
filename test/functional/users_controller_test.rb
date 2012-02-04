@@ -20,5 +20,4 @@ class UsersControllerTest < ActionController::TestCase
     get :update
     assert_response :success
   end
-
 end

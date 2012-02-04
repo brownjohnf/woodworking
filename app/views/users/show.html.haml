@@ -1,6 +1,16 @@
-%h1= @user.name
-%p= @user.email
-- if admin_signed_in?
-  %p
-    = link_to 'edit', edit_user_path
-    = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete
+.row
+  .span-24.last
+    %h1= @user.name
+    %p= @user.email
+    %p#followers= pluralize(@user.followers.count, 'follower')
+    = render 'associate_form' if user_signed_in?
+    - if @user.following.any?
+      %h2 Associates
+      = render @user.following
+    - if current_user == @user
+      %h2 People who consider you their associate
+      = render @user.followers
+    - if admin_signed_in?
+      %p
+        = link_to 'edit', edit_user_path
+        = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete
