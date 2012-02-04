@@ -1,2 +1,6 @@
 %h1= @user.name
 %p= @user.email
+- if admin_signed_in?
+  %p
+    = link_to 'edit', edit_user_path
+    = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete

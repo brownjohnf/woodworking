@@ -6,14 +6,14 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     -#%link{:href => image_path('favicon.ico'), :type => 'image/x-icon', :rel => 'icon'}
-  %body{:class => "#{params[:controller]}", :id => "#{params[:action]}"}
+  %body{:class => "#{params[:controller].parameterize}", :id => "#{params[:action].parameterize}"}
     = render 'layouts/header'
     = render 'layouts/notice', :notice => notice
     = render 'layouts/alert', :alert => alert
     = yield
     - if Rails.env.development?
       = debug(params)
-      Class: #{params[:controller]}
+      Class: #{params[:controller].parameterize}
       %br
-      ID: #{params[:action]}
+      ID: #{params[:action].parameterize}
     = render 'layouts/footer'
