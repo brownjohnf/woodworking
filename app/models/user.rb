@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
 
   has_many :reverse_relationships, :foreign_key => 'followed_id', :class_name => 'Relationship', :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower
-
+  
+  after_create :add_user_role
+  
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = User.where(:email => data.email).first
@@ -29,17 +31,23 @@ class User < ActiveRecord::Base
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
+  
+  private
+  
+    def add_user_role
+      self.roles << Role.find_by_name('User')
+    end
 
-  def following?(followed)
-    relationships.find_by_followed_id(followed)
-  end
-
-  def follow!(followed)
-    relationships.create!(:followed_id => followed.id)
-  end
-
-  def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
-  end
+    def following?(followed)
+      relationships.find_by_followed_id(followed)
+    end
+  
+    def follow!(followed)
+      relationships.create!(:followed_id => followed.id)
+    end
+  
+    def unfollow!(followed)
+      relationships.find_by_followed_id(followed).destroy
+    end
 
 end
