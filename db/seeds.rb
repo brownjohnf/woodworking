@@ -6,5 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = Admin.new(:email => 'admin@admin.com', :password => 'admin123')
+roles = Role.create!([{:name => 'User'},{:name => 'Moderator'},{:name => 'Admin'}])
+admin = User.new(:name => 'Admin User', :email => 'admin@admin.com', :password => 'admin123')
 admin.save!
+admin.roles << Role.find(1)
+admin.roles << Role.find(2)
+admin.roles << Role.find(3)
