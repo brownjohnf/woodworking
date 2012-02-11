@@ -9,8 +9,11 @@ class Ability
          can :manage, :all
        elsif user.role? :moderator
          can :read, :all
+         can :manage, User
        elsif user.role? :user
          can :read, :all
+         can [ :create, :destroy ], Relationship
+         can :update, User, :id => user.id
        end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
