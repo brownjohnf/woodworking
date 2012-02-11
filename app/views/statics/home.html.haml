@@ -6,6 +6,21 @@
   %li= link_to 'Github', '/auth/github'
 %hr
 
+%h2 User Roles
+%ul
+  - Role.all.each do |role|
+    %li
+      = role.name
+      - if current_user.roles.find_by_name(role.name)
+        &#x2713;
+%ul
+  %li= 'if you can read this you can manage users' if can? :manage, User
+  %li= 'if you can read this you can read users' if can? :read, User
+  %li= 'if you can read this you can update users' if can? :update, User
+  %li= 'if you can read this you can create users' if can? :create, User
+  %li= 'if you can read this you can destroy users' if can? :destroy, User
+  %li= 'if you can read this you can manage everything' if can? :manage, :all
+
 %h1 Readme
 
 %p The Gemfile contains both thin and foreman, and it is recommended you use thin as your client and foreman to manage it.

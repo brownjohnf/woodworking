@@ -1,12 +1,8 @@
 DeviseBase::Application.routes.draw do
 
-  devise_for :admins
-
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   resources :users, :only => [ :index, :show, :edit, :update ]
-  
-  resources :admins, :only => [ :index, :new, :edit, :create, :update, :destroy ]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

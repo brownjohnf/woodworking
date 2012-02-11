@@ -5,14 +5,10 @@
     [
     = current_user.email
     ]
-    - unless admin_signed_in?
-      Sign in as an
-      = link_to 'admin', new_admin_session_path
+    You are a(n)
+    - current_user.roles.each do |role|
       |
-    - else
-      You're also signed in as an admin [
-      = current_admin.email
-      ]
+      = role.name
     = link_to 'sign out', destroy_user_session_path, :method => :delete
     |
     = link_to 'edit your account', edit_user_registration_path
@@ -20,8 +16,6 @@
     = link_to 'home', root_path
     |
     = link_to 'users', users_path
-    |
-    = link_to 'admins', admins_path
 - else
   %p
     Please
