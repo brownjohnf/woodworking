@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   
   validates :name, :email, :presence => true
   
+  after_create :add_user_role
+  
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = User.where(:email => data.email).first
@@ -23,5 +25,11 @@ class User < ActiveRecord::Base
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
+  
+  private
+  
+    def add_user_role
+      self.roles << Role.find_by_name('User')
+    end
 
 end
