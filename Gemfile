@@ -12,6 +12,7 @@ gem 'gravatar_image_tag', '1.0.0'
 gem 'will_paginate', '3.0.3'
 gem 'acts-as-taggable-on', '2.2.2'
 gem 'formtastic', '2.0.2'
+gem 'cancan', '1.6.7'
 
 
 # Bundle edge Rails instead:
