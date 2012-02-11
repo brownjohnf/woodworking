@@ -15,13 +15,12 @@
       ]
     = link_to 'sign out', destroy_user_session_path, :method => :delete
     |
-    = link_to 'edit your account', edit_user_registration_path
+    = link_to 'profile', current_user
+    \-
+    = link_to 'edit', edit_user_path(current_user)
     |
     = link_to 'users', users_path
     |
     = link_to 'admins', admins_path
 - else
-  %p
-    Please
-    = link_to 'sign in', new_user_session_path
-    \.
+  %p Please #{link_to 'sign in', new_user_session_path}.
