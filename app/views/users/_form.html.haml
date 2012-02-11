@@ -1,3 +1,4 @@
 = semantic_form_for @user do |f|
-  = f.inputs :name, :email
+  = f.inputs :name
+  = f.input :roles, :as => :check_boxes if can? :manage, @user
   = f.buttons
