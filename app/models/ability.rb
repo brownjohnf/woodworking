@@ -15,6 +15,9 @@ class Ability
          if user.role? :admin
            can :manage, :all
          end
+         can [ :update, :destroy ], User, :id => user.id
+       else
+         
        end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
