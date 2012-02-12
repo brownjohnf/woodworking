@@ -2,4 +2,4 @@
 %p= @user.email
 %p
   = link_to 'edit', edit_user_path if can? :update, @user
-  = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete if can? :destroy, @user
+  = link_to "delete account", @user, :confirm => "Are you sure?", :method => :delete if can? :destroy, @user

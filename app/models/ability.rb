@@ -11,6 +11,9 @@ class Ability
          can :read, :all
        elsif user.role? :user
          can :read, :all
+         can [ :update, :destroy ], User, :id => user.id
+       else
+         
        end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
