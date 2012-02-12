@@ -2,6 +2,9 @@
   .span-24.last
     %h1= @user.name
     %p= @user.email
+    %p
+      = link_to 'edit', edit_user_path if can? :update, @user
+      = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete if can? :destroy, @user
 .row
   .span-12
     %p#followers= pluralize(@user.followers.count, 'follower')
@@ -14,6 +17,3 @@
       %h2 People who consider you their associate
       = render @user.followers
       = link_to 'edit your account', edit_user_registration_path
-    %p
-      = link_to 'edit', edit_user_path if can? :update, @user
-      = link_to "delete account", registration_path(@user), :confirm => "Are you sure?", :method => :delete if can? :destroy, @user

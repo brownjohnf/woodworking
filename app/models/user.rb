@@ -32,23 +32,23 @@ class User < ActiveRecord::Base
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
+
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
   
   private
   
     def add_user_role
       self.roles << Role.find_by_name('User')
-    end
-
-    def following?(followed)
-      relationships.find_by_followed_id(followed)
-    end
-  
-    def follow!(followed)
-      relationships.create!(:followed_id => followed.id)
-    end
-  
-    def unfollow!(followed)
-      relationships.find_by_followed_id(followed).destroy
     end
 
 end
