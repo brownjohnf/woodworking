@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 %html
   %head
-    %title title
+    %title= title
     = stylesheet_link_tag "application", :media => 'all'
     = javascript_include_tag "application"
     = csrf_meta_tags
     -#%link{:href => image_path('favicon.ico'), :type => 'image/x-icon', :rel => 'icon'}
-  %body{:class => "#{params[:controller].parameterize}", :id => "#{params[:action].parameterize}"}
-    = render 'layouts/header'
+  %body
+    .topbar
+      .topbar-inner
+        .container-fluid
+          %a{:class => "brand", :href => "#"} Wenge
+          = tabs
     = render 'layouts/notice', :notice => notice
     = render 'layouts/alert', :alert => alert
-    .container
-      = yield
-      - if Rails.env.development?
-        .row
-          .span-24.last
-            = debug(params)
-            Class: #{params[:controller].parameterize}
-            %br
-            ID: #{params[:action].parameterize}
+    = yield
+    - if Rails.env.development?
+      .row
+        .span-24.last
+          = debug(params)
+          Class: #{params[:controller].parameterize}
+          %br
+          ID: #{params[:action].parameterize}
     = render 'layouts/footer'

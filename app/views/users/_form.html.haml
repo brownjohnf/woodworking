@@ -1,4 +1,6 @@
 = semantic_form_for @user do |f|
-  = f.inputs :name
-  = f.input :roles, :as => :check_boxes if can? :manage, @user
-  = f.buttons
+  = f.inputs do
+    = f.input :name, :hint => 'this is your username'
+    = f.input :roles, :as => :check_boxes if can? :manage, @user
+  = f.buttons do
+    = f.commit_button :button_html => {:class => "primary"}

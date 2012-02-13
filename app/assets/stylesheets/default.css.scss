@@ -3,43 +3,4 @@ This is the manifest file for all SASS files. By using the @import
 directive, access to mixins, extensions, and variables is preserved.
 */
 
-// variables
-
-$background: #fff;
-
-
-
-// mixins
-
-@mixin fixed-menu {
-
-}
-
-
-
-
-
-// site-wide directives
-
-body {
-  code {
-    white-space: pre-line;
-  }
-}
-
-
-
-
-
-
-// layout imports
-
-// @import 'header';
-// @import 'footer';
-
-
-
-
-// page-specific imports
-
-@import 'statics';
+@import 'bootstrap';

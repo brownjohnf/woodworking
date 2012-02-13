@@ -1,7 +1,5 @@
-.row
-  .span-24
-    %p
-      You have registered using #{@user.email}.
-      = link_to 'change', edit_user_registration_path
-    = render 'form'
-    = link_to 'change your password', edit_user_registration_path
+%p
+  You have registered using #{@user.email}.
+  = link_to 'change', edit_user_registration_path
+= render 'form'
+= link_to 'change your password', edit_user_registration_path

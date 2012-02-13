@@ -11,8 +11,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'gravatar_image_tag', '1.0.0'
 gem 'will_paginate', '3.0.3'
 gem 'acts-as-taggable-on', '2.2.2'
-gem 'formtastic', '2.0.2'
+gem 'formtastic-bootstrap', '1.1.1'
 gem 'cancan', '1.6.7'
+gem 'tabulous', '1.2.0'
 
 
 # Bundle edge Rails instead:
@@ -34,11 +35,8 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.3'
   gem 'coffee-rails', '3.2.2'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   gem 'uglifier', '1.0.3'
+  gem 'bootstrap-sass', '2.0.0'
 end
 
 gem 'jquery-rails'
