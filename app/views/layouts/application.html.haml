@@ -7,19 +7,15 @@
     = csrf_meta_tags
     -#%link{:href => image_path('favicon.ico'), :type => 'image/x-icon', :rel => 'icon'}
   %body
-    .topbar
-      .topbar-inner
-        .container-fluid
-          %a{:class => "brand", :href => "#"} Wenge
-          = tabs
-    = render 'layouts/notice', :notice => notice
-    = render 'layouts/alert', :alert => alert
-    = yield
-    - if Rails.env.development?
-      .row
-        .span-24.last
-          = debug(params)
-          Class: #{params[:controller].parameterize}
-          %br
-          ID: #{params[:action].parameterize}
+    = render 'layouts/header'
+    .container
+      = yield
     = render 'layouts/footer'
+    - if Rails.env.development?
+      .container
+        .row
+          .span12
+            = debug(params)
+            Class: #{params[:controller].parameterize}
+            %br
+            ID: #{params[:action].parameterize}

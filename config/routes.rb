@@ -1,10 +1,18 @@
 DeviseBase::Application.routes.draw do
 
+  resources :woods
+
   resources :relationships, :only => [:create, :destroy]
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new'
+    get 'sign_out', :to => 'devise/sessions#destroy'
+  end
+  
   resources :users, :only => [ :index, :show, :edit, :update, :destroy ]
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

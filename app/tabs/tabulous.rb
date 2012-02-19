@@ -59,6 +59,8 @@ Tabulous.setup do |config|
       #--------------------------------------------------------------------------------------------#
       [    :home_tab    ,    'Home'         ,    root_path    ,    true        ,    true        ],
       [    :users_tab    ,    'Users'         ,    users_path    ,    true        ,    true        ],
+      [    :woods_tab    ,    'Woods'         ,    woods_path    ,    true        ,    true        ],
+      [    :signin_tab    ,    'Sign in'         ,    new_user_session_path    ,    true        ,    true        ],
       #--------------------------------------------------------------------------------------------#
       #    TAB NAME      |    DISPLAY TEXT    |    PATH          |    VISIBLE?    |    ENABLED?    #
       #--------------------------------------------------------------------------------------------#
@@ -84,7 +86,10 @@ Tabulous.setup do |config|
       #----------------------------------------------------------#
       #    CONTROLLER    |    ACTION          |    TAB           #
       #----------------------------------------------------------#
+      [    :statics        ,    :all_actions    ,    :home_tab    ],
       [    :users        ,    :all_actions    ,    :users_tab    ],
+      [    :woods        ,    :all_actions    ,    :woods_tab    ],
+      [    :sessions        ,    :all_actions    ,    :signin_tab    ],
       #----------------------------------------------------------#
       #    CONTROLLER    |    ACTION          |    TAB           #
       #----------------------------------------------------------#
@@ -120,12 +125,12 @@ Tabulous.setup do |config|
   # This gives you control over what class the <ul> element that wraps the tabs
   # will have.  Good for interfacing with third-party code like Twitter
   # Bootstrap.
-  # config.tabs_ul_class = "nav nav-pills"
+  config.tabs_ul_class = "nav"
 
   # Set this to true to have subtabs rendered in markup that Twitter Bootstrap
   # understands.  If this is set to true, you don't need to call subtabs in
   # your layout, just tabs.
-  # config.bootstrap_style_subtabs = true
+  config.bootstrap_style_subtabs = true
 
 
   #-------------------
@@ -149,6 +154,7 @@ Tabulous.setup do |config|
   # you are using Twitter Bootstrap.
   # 
   config.css.scaffolding = false
+  
 
   # You can tweak the colors of the generated CSS.
   #

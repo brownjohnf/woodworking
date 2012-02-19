@@ -7,6 +7,7 @@ class Ability
        user ||= User.new # guest user (not logged in)
        if user.role? :user
          can :read, :all
+         can :manage, Wood
          can [ :create, :destroy ], Relationship
          can :update, User, :id => user.id
          if user.role? :moderator
