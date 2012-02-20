@@ -5,3 +5,7 @@ directive, access to mixins, extensions, and variables is preserved.
 
 @import 'bootstrap';
 @import 'bootstrap-responsive';
+
+.header_padding {
+  height: 60px;
+}

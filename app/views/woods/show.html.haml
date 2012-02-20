@@ -1,21 +1,25 @@
-.alert
-  %a.close
-  = notice
-
-.btn-group
-  %a.btn{'href' => new_wood_path} Add a wood
-  %a.btn.dropdown-toggle{'data-toggle' => "dropdown", 'href' => "#"}
-    %span.caret
-  %ul.dropdown-menu
-    %li= link_to 'Destroy', @wood, :confirm => 'Are you sure?', :method => :delete
-
-%p
-  %b Name:
-  = @wood.name
-%p
-  %b Character:
-  = @wood.character
-
-= link_to 'Edit', edit_wood_path(@wood)
-\|
-= link_to 'Back', woods_path
+.container
+  .row
+    .span12
+      .alert
+        %a.close
+        = notice
+      
+      .btn-group
+        %a.btn{'href' => new_wood_path} Add a wood
+        %a.btn.dropdown-toggle{'data-toggle' => "dropdown", 'href' => "#"}
+          %span.caret
+        %ul.dropdown-menu
+          %li= link_to 'Destroy', @wood, :confirm => 'Are you sure?', :method => :delete
+          %li= link_to 'Home', root_path
+      
+      %p
+        %b Name:
+        = @wood.name
+      %p
+        %b Character:
+        = @wood.character
+      
+      = link_to 'Edit', edit_wood_path(@wood)
+      \|
+      = link_to 'Back', woods_path

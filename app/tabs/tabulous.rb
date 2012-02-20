@@ -60,7 +60,6 @@ Tabulous.setup do |config|
       [    :home_tab    ,    'Home'         ,    root_path    ,    true        ,    true        ],
       [    :users_tab    ,    'Users'         ,    users_path    ,    true        ,    true        ],
       [    :woods_tab    ,    'Woods'         ,    woods_path    ,    true        ,    true        ],
-      [    :signin_tab    ,    'Sign in'         ,    new_user_session_path    ,    true        ,    true        ],
       #--------------------------------------------------------------------------------------------#
       #    TAB NAME      |    DISPLAY TEXT    |    PATH          |    VISIBLE?    |    ENABLED?    #
       #--------------------------------------------------------------------------------------------#
@@ -89,7 +88,9 @@ Tabulous.setup do |config|
       [    :statics        ,    :all_actions    ,    :home_tab    ],
       [    :users        ,    :all_actions    ,    :users_tab    ],
       [    :woods        ,    :all_actions    ,    :woods_tab    ],
-      [    :sessions        ,    :all_actions    ,    :signin_tab    ],
+      [    :sessions        ,    :all_actions    ,    :home_tab    ],
+      [    :registrations        ,    :all_actions    ,    :home_tab    ],
+      [    :passwords        ,    :all_actions    ,    :home_tab    ],
       #----------------------------------------------------------#
       #    CONTROLLER    |    ACTION          |    TAB           #
       #----------------------------------------------------------#

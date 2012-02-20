@@ -1,2 +1,10 @@
-%h1 Please Sign in
-Please #{link_to 'sign in', new_user_session_path} to continue.
+.container
+  .row
+    .span8.offset2
+      .hero-unit
+        %h1 Welcome to Wenge!
+        %hr
+        %p Please #{link_to 'sign in', new_user_session_path} to continue.
+        %p
+          Don't have an account? We'd love to have you with us.
+          #{link_to 'Sign up here', new_user_registration_path}!

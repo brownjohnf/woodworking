@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
   end
+  
   def edit
     @user = User.find(params[:id])
   end

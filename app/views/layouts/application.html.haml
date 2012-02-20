@@ -8,8 +8,8 @@
     -#%link{:href => image_path('favicon.ico'), :type => 'image/x-icon', :rel => 'icon'}
   %body
     = render 'layouts/header'
-    .container
-      = yield
+    .header_padding &nbsp;
+    = yield
     = render 'layouts/footer'
     - if Rails.env.development?
       .container

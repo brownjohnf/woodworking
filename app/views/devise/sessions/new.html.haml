@@ -1,20 +1,34 @@
-.row
-  .span-24.last
-    %h2 Sign in
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      %div
-        = f.label :email
-        %br
-        = f.email_field :email
-      %div
-        = f.label :password
-        %br
-        = f.password_field :password
-      - if devise_mapping.rememberable?
-        %div
-          = f.check_box :remember_me
-          = f.label :remember_me
-      %div
-        = f.submit "Sign in"
-    
-    = render "links"
+.container
+  .row
+    .span6.offset3
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f|
+        .control-group
+          .controls
+            %h2 Sign in
+        .control-group
+          = f.label :email, :class => 'control-label'
+          .controls
+            .input-prepend
+              %span.add-on
+                %i.icon-envelope
+              = f.email_field :email
+            %p.help-block the email you used to sign up
+        .control-group
+          = f.label :password, :class => 'control-label'
+          .controls
+            .input-prepend
+              %span.add-on
+                %i.icon-barcode
+              = f.password_field :password
+            %p.help-block if you have already signed in using a third party login, you will need to request a password reset in order to have a password to use
+        - if devise_mapping.rememberable?
+          .control-group
+            = f.label :remember_me
+            .controls
+              = f.check_box :remember_me, :class => 'control-label'
+        .control-group
+          .controls
+            = f.submit "Sign in", :class => 'btn-primary'
+        .control-group
+          .controls
+            = render "links"

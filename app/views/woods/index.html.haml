@@ -1,21 +1,24 @@
-%h1 Listing woods
-
-%table
-  %tr
-    %th Name
-    %th Character
-    %th
-    %th
-    %th
-
-  - @woods.each do |wood|
-    %tr
-      %td= wood.name
-      %td= wood.character
-      %td= link_to 'Show', wood
-      %td= link_to 'Edit', edit_wood_path(wood)
-      %td= link_to 'Destroy', wood, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Wood', new_wood_path
+.container
+  .row
+    .span12
+      %h1 Who doesn't like wood?
+      
+      %table.table
+        %tr
+          %th Name
+          %th Character
+          %th
+          %th
+          %th
+      
+        - @woods.each do |wood|
+          %tr
+            %td= wood.name
+            %td= wood.character
+            %td= link_to 'Show', wood
+            %td= link_to 'Edit', edit_wood_path(wood)
+            %td= link_to 'Destroy', wood, :confirm => 'Are you sure?', :method => :delete
+      
+      %br
+      
+      = link_to 'New Wood', new_wood_path
