@@ -3,4 +3,4 @@
     = f.input :name, :hint => 'this is your username'
     = f.input :roles, :as => :check_boxes if can? :manage, @user
   = f.buttons do
-    = f.commit_button :button_html => {:class => "primary"}
+    = f.commit_button :button_html => {:class => "btn btn-primary"}

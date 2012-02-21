@@ -1,7 +1,12 @@
-%h1 Editing wood
-
-= render 'form'
-
-= link_to 'Show', @wood
-\|
-= link_to 'Back', woods_path
+.container
+  .row
+    .span12
+      %h1
+        Editing
+        = @wood.name
+      
+      = render 'form'
+      
+      = link_to 'Show', @wood
+      \|
+      = link_to 'Back', woods_path

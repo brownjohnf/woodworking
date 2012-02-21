@@ -1,9 +1,10 @@
 .container
   .row
     .span12
-      .alert
-        %a.close
-        = notice
+      - if notice
+        .alert
+          %a.close
+          = notice
       
       .btn-group
         %a.btn{'href' => new_wood_path} Add a wood

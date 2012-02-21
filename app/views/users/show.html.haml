@@ -1,18 +1,23 @@
 .container
   .row
-    .span12
-      %h1= @user.name
+    .span2
+      = render 'associate_form' if user_signed_in?
+      &nbsp;
+    .span6
+      %h1
+        = @user.name
       %p= @user.email
       %p
         = link_to 'edit', edit_user_path if can? :update, @user
         = link_to "delete account", @user, :confirm => "Are you sure you want to destroy your account? This action cannot be undone.", :method => :delete if can? :destroy, @user
-  .row
-    .span6
-      = render 'associate_form' if user_signed_in?
-      - if @user.following.any?
-        %h2#followers= pluralize(@user.following.count, 'Associate')
-        = render @user.following
-    .span6
-      - if current_user == @user
-        %h2 People who consider you their associate
-        = render @user.followers
+    .span4
+      - if @user.followers.any? && @user.following.any?
+        .well
+          %h2#followers= pluralize(@user.following.count, 'Associate')
+          %p Associates are contacts. Mutual associates have reciprocally added this user as their associate.
+        - @user.following.each do |followed|
+          %p
+            = link_to followed.name, followed
+            - if @user.followers.find_by_id(followed.id)
+              %span.label.label-success mutual
+            

@@ -58,8 +58,10 @@ Tabulous.setup do |config|
       #    TAB NAME      |    DISPLAY TEXT    |    PATH          |    VISIBLE?    |    ENABLED?    #
       #--------------------------------------------------------------------------------------------#
       [    :home_tab    ,    'Home'         ,    root_path    ,    true        ,    true        ],
-      [    :users_tab    ,    'Users'         ,    users_path    ,    true        ,    true        ],
-      [    :woods_tab    ,    'Woods'         ,    woods_path    ,    true        ,    true        ],
+      [    :users_tab    ,    'Users'         ,    users_path    ,    can?(:read, User)        ,    can?(:read, User)        ],
+      [    :woods_tab    ,    'Woods'         ,    woods_path    ,    can?(:read, Wood)        ,    can?(:read, Wood)        ],
+      [    :index_woods_subtab    ,    'All woods'         ,    woods_path    ,    true        ,    true        ],
+      [    :new_woods_subtab    ,    'Add a wood'         ,    new_wood_path    ,    can?(:create, Wood)        ,    can?(:create, Wood)        ],
       #--------------------------------------------------------------------------------------------#
       #    TAB NAME      |    DISPLAY TEXT    |    PATH          |    VISIBLE?    |    ENABLED?    #
       #--------------------------------------------------------------------------------------------#

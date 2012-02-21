@@ -9,14 +9,12 @@ class Ability
          can :read, :all
          can :manage, Wood
          can [ :create, :destroy ], Relationship
-         can :update, User, :id => user.id
-         if user.role? :moderator
-           can :manage, User
-         end
+         can [ :update, :destroy ], User, :id => user.id
          if user.role? :admin
            can :manage, :all
+         elsif user.role? :moderator
+           can :manage, User
          end
-         can [ :update, :destroy ], User, :id => user.id
        else
          
        end
