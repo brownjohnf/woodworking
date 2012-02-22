@@ -1,0 +1,50 @@
+.container
+  .row
+    .span2
+      %ul.thumbnails
+        %li.span2
+          .thumbnail
+            = image_tag 'wenge.jpg'
+    .span10
+      .hero-unit
+        - if user_signed_in?
+          %h1 We're glad to have you!
+          %hr
+          %p
+            = site_name
+            is a community made for and by woodworkers. Whether a professional, an enthusiast or a consumer, come join a circle of artists dedicated to their craft.
+          %hr
+          %p 
+            Whether you've just joined or are a longtime veteran, dig in to our latest and greatest #{link_to 'articles', articles_path} or make connections in our #{link_to 'user community', users_path}.
+        - else
+          %h1 Welcome to #{site_name}!
+          %hr
+          %p
+            = site_name
+            is a community made for and by woodworkers. Whether a professional, an enthusiast or a consumer, come join a circle of artists dedicated to their craft.
+          %hr
+          %p Please #{link_to 'sign in', new_user_session_path, :class => 'btn btn-primary btn-large'} to continue.
+          %p
+            Don't have an account? We'd love to have you with us.
+            #{link_to 'Sign up here !', new_user_registration_path, :class => 'btn btn-success btn-large'}
+  .row
+    .span12
+      %ul.thumbnails
+        %li.span4
+          .thumbnail
+            = image_tag 'species-wenge-room.jpg', :style => 'width:100%;height:200px;'
+            .caption
+              %h4 Professionals
+              %p Make business contacts, interact with clients, and showcase your work.
+        %li.span4
+          .thumbnail
+            = image_tag 'india10.jpg', :style => 'width:100%;height:200px;'
+            .caption
+              %h4 Artists
+              %p Reach out to the thousands of consumers interested in art pieces.
+        %li.span4
+          .thumbnail
+            = image_tag 'post-tablesaw.jpg', :style => 'width:100%;height:200px;'
+            .caption
+              %h4 Weekend Woodworkers
+              %p Learn techniques, share your experiences, and become a master craftsman.

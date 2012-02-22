@@ -1,0 +1,35 @@
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'shared/menu'
+    .span10
+      %p#notice= notice
+      %h1= @article.title
+      %p
+        last updated
+        = time_ago_in_words(@article.revisions.last.created_at)
+        ago by
+        = @article.revisions.last.user.name
+        - @article.tag_list.each do |tag|
+          %span.label.label-success= tag
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active= link_to 'Current Version', '#1', 'data-toggle' => 'tab'
+          %li= link_to 'History', '#2', 'data-toggle' => 'tab'
+          %li= link_to 'Edit', '#3', 'data-toggle' => 'tab'
+        .tab-content
+          .tab-pane.active#1
+            %p= @article.revisions.last.content
+          .tab-pane#2
+            = render @article.revisions.order('created_at DESC')
+          .tab-pane#3
+            = render 'form'
+      %hr
+      %p
+        = pluralize(@article.revisions.count, 'revision')
+        over
+        = time_ago_in_words(@article.created_at)
+      
+      = link_to 'Edit', edit_article_path(@article)
+      \|
+      = link_to 'Back', articles_path

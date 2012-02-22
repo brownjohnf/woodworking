@@ -1,0 +1,9 @@
+%p
+  = link_to article.title, article
+  %br
+  updated
+  = time_ago_in_words(article.revisions.last.created_at)
+  ago
+  - article.tag_list.each do |tag|
+    %span.label.label-info= tag
+  %hr

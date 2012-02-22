@@ -15,9 +15,9 @@
         .well
           %h2#followers= pluralize(@user.following.count, 'Associate')
           %p Associates are contacts. Mutual associates have reciprocally added this user as their associate.
-        - @user.following.each do |followed|
-          %p
-            = link_to followed.name, followed
-            - if @user.followers.find_by_id(followed.id)
-              %span.label.label-success mutual
+          - @user.following.each do |followed|
+            %p
+              = link_to followed.name, followed
+              - if @user.followers.find_by_id(followed.id)
+                %span.label.label-success mutual
             

@@ -1,0 +1,9 @@
+.container
+  .row
+    .span12
+      %h1 Editing revision
+      = semantic_form_for @revision do |f|
+        = f.inputs :title, :for => :revisable
+        = f.inputs do
+          = f.input :content
+        = f.buttons

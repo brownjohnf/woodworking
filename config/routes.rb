@@ -1,5 +1,9 @@
 DeviseBase::Application.routes.draw do
 
+  resources :revisions#, :only => [ :index, :show, :create, :new, :destroy ]
+    
+  resources :articles
+
   resources :woods
 
   resources :relationships, :only => [:create, :destroy]
@@ -12,6 +16,8 @@ DeviseBase::Application.routes.draw do
   end
   
   resources :users, :only => [ :index, :show, :edit, :update, :destroy ]
+  
+  match '/splash' => 'statics#splash'
   
 
   # The priority is based upon order of creation:

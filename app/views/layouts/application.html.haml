@@ -9,12 +9,6 @@
   %body
     = render 'layouts/header'
     .header_padding &nbsp;
-    .container
-      .row
-        .span12
-          %ul.nav.nav-pills
-            %li.active= link_to 'test', ''
-            %li= link_to 'test', ''
     = yield
     .footer_padding &nbsp;
     = render 'layouts/footer'

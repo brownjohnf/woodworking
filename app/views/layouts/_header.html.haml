@@ -1,6 +1,6 @@
 .navbar.navbar-fixed-top
   .navbar-inner
-    .container
+    .container-fluid
       %a.btn.btn-navbar{'data-toggle' => "collapse", 'data-target' => ".nav-collapse"}
         %span.icon-bar
         %span.icon-bar
@@ -8,6 +8,8 @@
       %a{:class => "brand", :href => "#{root_path}"}= site_name
       .nav-collapse
         = tabs
+      %form.navbar-search.pull-left
+        %input.search-query{:type => 'text', :placeholder => 'search'}
       .nav-collapse.pull-right
         %ul.nav
           - if user_signed_in?

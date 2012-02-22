@@ -1,40 +1,27 @@
 .container
   .row
-    .span2
-      %ul.thumbnails
-        %li.span2
-          .thumbnail
-            = image_tag 'wenge.jpg'
-    .span10
+    .span4
       .hero-unit
-        %h1 Welcome to Wenge!
-        %hr
+        %h1 Vitals
+        %h3= pluralize(User.all.count, 'user')
+        %h3= pluralize(Article.all.count, 'article')
+        %h3= pluralize(Revision.all.count, 'revision')
         %p
-          = site_name
-          is a community made for and by woodworkers. Whether a professional, an enthusiast or a consumer, come join a circle of artists dedicated to their craft.
-        %hr
-        %p Please #{link_to 'sign in', new_user_session_path, :class => 'btn btn-primary btn-large'} to continue.
-        %p
-          Don't have an account? We'd love to have you with us.
-          #{link_to 'Sign up here !', new_user_registration_path, :class => 'btn btn-success btn-large'}
-  .row
-    .span12
-      %ul.thumbnails
-        %li.span4
-          .thumbnail
-            = image_tag 'species-wenge-room.jpg', :style => 'width:100%;height:200px;'
-            .caption
-              %h4 Professionals
-              %p Make business contacts, interact with clients, and showcase your work.
-        %li.span4
-          .thumbnail
-            = image_tag 'india10.jpg', :style => 'width:100%;height:200px;'
-            .caption
-              %h4 Artists
-              %p Reach out to the thousands of consumers interested in art pieces.
-        %li.span4
-          .thumbnail
-            = image_tag 'post-tablesaw.jpg', :style => 'width:100%;height:200px;'
-            .caption
-              %h4 Weekend Woodworkers
-              %p Learn techniques, share your experiences, and become a master craftsman.
+          for an average of
+          = Revision.all.count / User.all.count /  1
+          updates per user per day!
+    .span4
+      %h1 Latest Articles
+      = render @articles
+    .span4
+      - if @user.followers.any? && @user.following.any?
+        .well
+          %h2#followers
+            You have
+            = pluralize(@user.following.count, 'Associate')
+          %p Associates are contacts. Mutual associates have reciprocally added you as their associate.
+          - @user.following.each do |followed|
+            %p
+              = link_to followed.name, followed
+              - if @user.followers.find_by_id(followed.id)
+                %span.label.label-success mutual

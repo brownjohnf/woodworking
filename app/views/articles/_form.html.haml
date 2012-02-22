@@ -1,0 +1,10 @@
+- @article.revisions.build(:user_id => current_user.id, :content => @article.revisions.last.content)
+= semantic_form_for @article do |f|
+  = f.inputs do
+    = f.input :title
+    = f.semantic_fields_for :revisions do |r|
+      = r.input :content
+      = r.input :user_id, :as => :hidden
+    = f.input :tag_list, :as => :string
+  = f.buttons do
+    = f.commit_button

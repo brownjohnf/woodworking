@@ -2,5 +2,6 @@
   = f.inputs do
     = f.input :name, :hint => 'this is your username'
     = f.input :roles, :as => :check_boxes if can? :manage, @user
+    = f.input :tag_list
   = f.buttons do
     = f.commit_button :button_html => {:class => "btn btn-primary"}

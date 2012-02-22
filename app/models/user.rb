@@ -5,18 +5,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :role_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :role_ids, :tag_list
   
   has_and_belongs_to_many :roles
   
   accepts_nested_attributes_for :roles, :allow_destroy => true
   validates :name, :email, :presence => true
+  
+  acts_as_taggable
+  acts_as_tagger
 
   has_many :relationships, :foreign_key => 'follower_id', :dependent => :destroy
   has_many :following, :through => :relationships, :source => :followed
 
   has_many :reverse_relationships, :foreign_key => 'followed_id', :class_name => 'Relationship', :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower
+  
+  has_many :revisions
   
   after_create :add_user_role
   

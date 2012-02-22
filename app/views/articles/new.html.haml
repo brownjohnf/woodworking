@@ -1,0 +1,10 @@
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'shared/menu'
+    .span10
+      %h1 New article
+      
+      = render 'form'
+      
+      = link_to 'Back', articles_path
