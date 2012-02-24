@@ -9,9 +9,14 @@
         %p
           for an average of
           = Revision.all.count / User.all.count /  1
-          updates per user per day!
+          updates
+          to
+          = Article.all.count / User.all.count / 1
+          articles
+          per user per day!
     .span4
       %h1 Latest Articles
+      %hr
       = render @articles
     .span4
       - if @user.followers.any? && @user.following.any?
