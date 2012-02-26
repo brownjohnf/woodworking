@@ -1,8 +1,12 @@
 DeviseBase::Application.routes.draw do
 
+  Mercury::Engine.routes
+
   resources :revisions#, :only => [ :index, :show, :create, :new, :destroy ]
     
-  resources :articles
+  resources :articles do
+    member { post :mercury_update }
+  end
 
   resources :woods
 

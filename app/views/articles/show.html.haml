@@ -2,26 +2,33 @@
   .row-fluid
     .span2
       = render 'shared/menu'
+      .well#editing_tips
+        %h3 Editing Tips
+        %p Drag photos into editable areas to embed them.
     .span10
       %p#notice= notice
       %h1
-        = @article.title
-        = link_to 'edit', edit_article_path(@article), :class => 'btn btn-warning btn-mini' if can? :update, @article
+        %span#article_title.mercury-region{'data-type' => 'editable'}= @article.title
       %p
         last updated
         = time_ago_in_words(@article.revisions.last.created_at)
         ago by
         = link_to @article.revisions.last.user.name, @article.revisions.last.user
         - @article.revisions.last.tag_list.each do |tag|
-          %span.label.label-success= tag
+          %span.label.label-success
+            %a.close &times;
+            = tag
       .tabbable
         %ul.nav.nav-tabs
           %li.active= link_to 'Current Version', '#1', 'data-toggle' => 'tab'
-          %li= link_to 'History', '#2', 'data-toggle' => 'tab'
-          %li= link_to 'Edit', '#3', 'data-toggle' => 'tab'
+          %li= link_to 'History', '#2', 'data-toggle' => 'tab', :rel => 'tooltip-top', :title => pluralize(@article.revisions.count, 'revision')
+          - if can? :update, @article
+            %li= link_to 'Edit', '/editor' + request.path, :id => 'edit_link', :data => { :save_url => mercury_update_article_path(@article) }
+          - else
+            %li= link_to 'Edit', '#3', 'data-toggle' => 'tab'
         .tab-content
           .tab-pane.active#1
-            %p= @article.revisions.last.content
+            #article_content.mercury-region{'data-type' => 'editable'}= raw @article.revisions.last.content
           .tab-pane#2
             - if can? :update, @article
               = render @article.revisions.order('created_at DESC')

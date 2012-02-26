@@ -14,6 +14,7 @@ gem 'acts-as-taggable-on', '2.2.2'
 gem 'formtastic-bootstrap', '1.1.1'
 gem 'cancan', '1.6.7'
 gem 'tabulous', '1.2.0'
+gem 'mercury-rails', '0.3.1'
 
 
 # Bundle edge Rails instead:

@@ -1,14 +1,13 @@
+%h3
+  = link_to article.title, article, :rel => 'tooltip-top', :title => pluralize(article.revisions.count, 'revision')
 %p
-  %h3
-    = link_to article.title, article, :rel => 'tooltip-top', :title => pluralize(article.revisions.count, 'revision')
-  %p
-    by
-    - authors = article.revisions.select(:user_id).uniq
-    - authors.each do |author|
-      #{link_to author.user.name, author.user}#{authors.last == author ? nil : ', '}
-  updated
-  = time_ago_in_words(article.revisions.last.created_at)
-  ago
-  - article.revisions.last.tag_list.each do |tag|
-    %span.label.label-info= tag
-  %hr
+  by
+  - authors = article.revisions.select(:user_id).uniq
+  - authors.each do |author|
+    #{link_to author.user.name, author.user}#{authors.last == author ? nil : ', '}
+updated
+= time_ago_in_words(article.revisions.last.created_at)
+ago
+- article.revisions.last.tag_list.each do |tag|
+  %span.label.label-info= tag
+%hr

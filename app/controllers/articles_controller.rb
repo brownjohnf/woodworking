@@ -72,6 +72,16 @@ class ArticlesController < ApplicationController
       end
     end
   end
+  
+  def mercury_update
+    @article = Article.find(params[:id])
+    @article.title = params[:content][:article_title][:value]
+    @article.save!
+    @revision = @article.revisions.build(:user_id => current_user.id)
+    @revision.content = params[:content][:article_content][:value]
+    @revision.save!
+    render text: ''
+  end
 
   # DELETE /articles/1
   # DELETE /articles/1.json

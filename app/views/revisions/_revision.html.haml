@@ -2,5 +2,5 @@
   = revision.created_at.strftime('%d %B %Y')
   by
   = link_to revision.user.name, revision.user
-%p= revision.content
+= raw revision.content
 %hr
