@@ -58,8 +58,6 @@ Tabulous.setup do |config|
       #    TAB NAME      |    DISPLAY TEXT    |    PATH          |    VISIBLE?    |    ENABLED?    #
       #--------------------------------------------------------------------------------------------#
       [    :root_tab    ,    'Home'         ,    root_path    ,    true        ,    true        ],
-      [    :home_root_subtab    ,    'Home'         ,    root_path    ,    user_signed_in?        ,    true        ],
-      [    :splash_root_subtab    ,    'Splash'         ,    '/splash'    ,    user_signed_in?        ,    true        ],
       [    :users_tab    ,    'Users'         ,    users_path    ,    can?(:read, User)        ,    can?(:read, User)        ],
       [    :articles_tab    ,    'Articles'         ,    articles_path    ,    true        ,    true        ],
       [    :woods_tab    ,    'Woods'         ,    woods_path    ,    can?(:read, Wood)        ,    can?(:read, Wood)        ],

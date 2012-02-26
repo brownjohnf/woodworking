@@ -6,19 +6,19 @@ class Ability
     #
        user ||= User.new # guest user (not logged in)
        
-       can :read, [:article,:revision,:wood]
+       can :read, [ User, Article, Revision, Wood ]
        
        if user.role? :admin
          can :manage, :all
        elsif user.role? :user
          can :read, :all
-         can :manage, Wood
+         can [ :create, :update ], Wood
          can [ :create, :destroy ], Relationship
          can [ :update, :destroy ], User, :id => user.id
          can :create, Revision
          can [ :create, :update ], Article
-        if user.role? :moderator
-           can :manage, Article
+         if user.role? :moderator
+           can :manage, Article, Wood
          end
        end
     #

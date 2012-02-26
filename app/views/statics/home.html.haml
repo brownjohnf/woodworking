@@ -8,10 +8,10 @@
         %h3= pluralize(Revision.all.count, 'revision')
         %p
           for an average of
-          = Revision.all.count / User.all.count /  1
+          = Revision.all.count / User.all.count /  5
           updates
           to
-          = Article.all.count / User.all.count / 1
+          = Article.all.count / User.all.count / 5
           articles
           per user per day!
     .span4
@@ -29,4 +29,4 @@
             %p
               = link_to followed.name, followed
               - if @user.followers.find_by_id(followed.id)
-                %span.label.label-success mutual
+                %span.label.label-success{:rel => 'popover-top', :title => 'Mutual Associate', 'data-content' => 'This person has also added you as an associate.'} mutual

@@ -1,3 +1,6 @@
-%h3= revision.created_at.strftime('%d %B %Y')
+%h3
+  = revision.created_at.strftime('%d %B %Y')
+  by
+  = link_to revision.user.name, revision.user
 %p= revision.content
 %hr

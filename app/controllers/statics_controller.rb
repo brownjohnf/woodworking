@@ -3,12 +3,12 @@ class StaticsController < ApplicationController
   skip_authorization_check
 
   def home
-    if user_signed_in?
+    unless user_signed_in?
+      redirect_to '/splash'
+    else
       @articles = Article.order('updated_at DESC').limit(10)
       @user = current_user
       render 'home'
-    else
-      redirect_to '/splash'
     end
   end
   

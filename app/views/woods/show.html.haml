@@ -1,26 +1,31 @@
-.container
-  .row
-    .span12
-      - if notice
-        .alert
-          %a.close
-          = notice
-      
-      .btn-group
-        %a.btn{'href' => new_wood_path} Add a wood
-        %a.btn.dropdown-toggle{'data-toggle' => "dropdown", 'href' => "#"}
-          %span.caret
-        %ul.dropdown-menu
-          %li= link_to 'Destroy', @wood, :confirm => 'Are you sure?', :method => :delete
-          %li= link_to 'Home', root_path
-      
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'shared/menu'
+    .span10
+      .alert.alert-success= notice
+      %h1= @wood.name
       %p
-        %b Name:
-        = @wood.name
-      %p
-        %b Character:
-        = @wood.character
-      
-      = link_to 'Edit', edit_wood_path(@wood)
-      \|
+        last updated
+        = time_ago_in_words(@wood.updated_at)
+        ago
+        - @wood.tag_list.each do |tag|
+          %span.label.label-success= tag
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active= link_to 'Read', '#1', 'data-toggle' => 'tab'
+          %li= link_to 'Edit', '#2', 'data-toggle' => 'tab'
+        .tab-content
+          .tab-pane.active#1
+            %p= @wood.character
+          .tab-pane#2
+            - if can? :update, @wood
+              = render 'form'
+              = link_to 'destroy wood', @wood, :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger' if can? :destroy, @wood
+            - else
+              %p
+                Please
+                = link_to 'sign in', '/sign_in'
+                to edit this wood.
+      %hr
       = link_to 'Back', woods_path

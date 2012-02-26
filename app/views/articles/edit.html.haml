@@ -1,10 +1,15 @@
-.container
-  .row
-    .span12
-      %h1 Editing article
-
-      = render 'form'
-      
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'shared/menu'
+    .span10
+      %h1 Editing '#{@article.title}'
+      = semantic_form_for @article do |f|
+        = f.inputs do
+          = f.input :title
+        = f.buttons do
+          = f.commit_button :button_html => { :class => 'btn btn-primary' }
+          
       = link_to 'Show', @article
       \|
       = link_to 'Back', articles_path

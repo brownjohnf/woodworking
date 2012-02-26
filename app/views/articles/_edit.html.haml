@@ -1,0 +1,10 @@
+- @revision = @article.revisions.build(:user_id => current_user.id, :content => @article.revisions.last.content, :tag_list => @article.revisions.last.tag_list)
+= semantic_form_for @revision do |f|
+  = f.inputs do
+    = f.input :tag_list, :as => :string
+    = f.input :content
+    = f.input :user_id, :as => :hidden
+    = f.input :revisable_id, :as => :hidden
+    = f.input :revisable_type, :as => :hidden
+  = f.buttons do
+    = f.commit_button :button_html => { :class => 'btn btn-primary' }

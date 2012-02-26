@@ -1,23 +1,36 @@
-.container
-  .row
+.container-fluid
+  .row-fluid
     .span2
+      = render 'shared/menu'
       = render 'associate_form' if user_signed_in?
       &nbsp;
     .span6
-      %h1
-        = @user.name
-      %p= @user.email
+      %h1= @user.name
       %p
-        = link_to 'edit', edit_user_path if can? :update, @user
-        = link_to "delete account", @user, :confirm => "Are you sure you want to destroy your account? This action cannot be undone.", :method => :delete if can? :destroy, @user
+        - if user_signed_in?
+          = @user.email
+        - else
+          Please
+          = link_to 'sign in', '/sign_in'
+          or
+          = link_to 'sign up', new_user_registration_path
+          to view details about this user.
     .span4
       - if @user.followers.any? && @user.following.any?
         .well
           %h2#followers= pluralize(@user.following.count, 'Associate')
-          %p Associates are contacts. Mutual associates have reciprocally added this user as their associate.
-          - @user.following.each do |followed|
-            %p
-              = link_to followed.name, followed
-              - if @user.followers.find_by_id(followed.id)
-                %span.label.label-success mutual
+          %hr
+          - if can? :read, Relationship
+            - @user.following.each do |followed|
+              %p
+                = link_to followed.name, followed
+                - if @user.followers.find_by_id(followed.id)
+                  %span.label.label-success{:rel => 'popover-top', :title => 'Mutual Associate', 'data-content' => 'This person has also added you as an associate.'} mutual
+      - if can? :manage, @user
+        .btn-group
+          = link_to 'edit profile', edit_user_path(@user), :class => 'btn btn-warning'
+          %a.btn.btn-warning.dropdown-toggle{'data-toggle' => "dropdown", 'href' => '#'}
+            %span.caret
+          %ul.dropdown-menu
+            %td= link_to 'Delete Account', @user, :confirm => 'Are you sure you want to destroy your account? This action cannot be undone.', :method => :delete if can? :destroy, @user
             

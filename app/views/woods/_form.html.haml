@@ -1,7 +1,9 @@
 = semantic_form_for @wood do |f|
+  = f.semantic_errors
   = f.inputs do
     = f.input :name
     = f.input :character
+    = f.input :tag_list
   
   = f.buttons do
     = f.commit_button :button_html => { :class => 'btn btn-primary' }

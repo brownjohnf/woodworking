@@ -9,16 +9,15 @@
         %tr
           %th Name
           %th Character
-          %th
+          %th Tags
           %th
       
         - @woods.each do |wood|
           %tr
             %td= link_to wood.name, wood
             %td= wood.character
-            %td= link_to 'Edit', edit_wood_path(wood), :class => 'btn' if can? :update, wood
+            %td= wood.tag_list
             %td= link_to 'Destroy', wood, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' if can? :destroy, wood
-      
       %br
       
-      = link_to 'New Wood', new_wood_path
+      = link_to 'New Wood', new_wood_path, :class => 'btn btn-success' if can? :create, Wood

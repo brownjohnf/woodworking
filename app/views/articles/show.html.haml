@@ -4,13 +4,15 @@
       = render 'shared/menu'
     .span10
       %p#notice= notice
-      %h1= @article.title
+      %h1
+        = @article.title
+        = link_to 'edit', edit_article_path(@article), :class => 'btn btn-warning btn-mini' if can? :update, @article
       %p
         last updated
         = time_ago_in_words(@article.revisions.last.created_at)
         ago by
-        = @article.revisions.last.user.name
-        - @article.tag_list.each do |tag|
+        = link_to @article.revisions.last.user.name, @article.revisions.last.user
+        - @article.revisions.last.tag_list.each do |tag|
           %span.label.label-success= tag
       .tabbable
         %ul.nav.nav-tabs
@@ -21,15 +23,25 @@
           .tab-pane.active#1
             %p= @article.revisions.last.content
           .tab-pane#2
-            = render @article.revisions.order('created_at DESC')
+            - if can? :update, @article
+              = render @article.revisions.order('created_at DESC')
+            - else
+              %p
+                Please
+                = link_to 'sign in', '/sign_in'
+                to view this article's history.
           .tab-pane#3
-            = render 'form'
+            - if can? :update, @article
+              = render 'edit'
+              = link_to 'destroy article', @article, :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger' if can? :destroy, @article
+            - else
+              %p
+                Please
+                = link_to 'sign in', '/sign_in'
+                to edit this article.
       %hr
       %p
         = pluralize(@article.revisions.count, 'revision')
         over
         = time_ago_in_words(@article.created_at)
-      
-      = link_to 'Edit', edit_article_path(@article)
-      \|
       = link_to 'Back', articles_path

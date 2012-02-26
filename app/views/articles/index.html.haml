@@ -4,4 +4,6 @@
       = render 'shared/menu'
     .span10
       %h1 Recent articles
+      %hr
       = render @articles
+      = link_to 'new article', new_article_path, :class => 'btn btn-success' if can? :create, Article

@@ -1,6 +1,10 @@
-.container
-  .row
-    .span12
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'shared/menu'
+    .span10
+      .alert.alert-success= notice
+      .alert.alert-warning= alert
       %h1
         Editing
         = @wood.name

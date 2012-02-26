@@ -43,11 +43,11 @@ class RevisionsController < ApplicationController
   # POST /revisions
   # POST /revisions.json
   def create
-    @revision = current_user.revisions.build(params[:revision])
+    @revision = Revision.new(params[:revision])
 
     respond_to do |format|
       if @revision.save
-        format.html { redirect_to @revision, notice: 'Revision was successfully created.' }
+        format.html { redirect_to @revision.revisable, notice: 'Revision was successfully created.' }
         format.json { render json: @revision, status: :created, location: @revision }
       else
         format.html { render action: "new" }

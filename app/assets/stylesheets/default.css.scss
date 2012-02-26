@@ -6,6 +6,10 @@ directive, access to mixins, extensions, and variables is preserved.
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 
+body {
+  //background-image: url('stripes_bg.gif')
+}
+
 .header_padding {
   height: 60px;
 }
