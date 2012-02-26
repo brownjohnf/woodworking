@@ -3,8 +3,8 @@
   = f.inputs do
     = f.input :title
     = f.semantic_fields_for :revisions do |r|
+      = r.input :tag_list, :as => :string
       = r.input :content
       = r.input :user_id, :as => :hidden
-    = f.input :tag_list, :as => :string
   = f.buttons do
     = f.commit_button
