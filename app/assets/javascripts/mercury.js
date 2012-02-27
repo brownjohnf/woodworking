@@ -469,15 +469,15 @@ window.Mercury = {
   // be called directly after the Mercury scripts have loaded, but before anything has been initialized.  It's a good
   // place to add or change functionality.
   onload: function() {
-  Mercury.on('ready', function() {
-    var link = $('#mercury_iframe').contents().find('#edit_link');
-    Mercury.saveURL = link.data('save-url');
-    link.hide();
-    $('#mercury_iframe').contents().find('#editing_tips').show();
-  });
-  Mercury.on('saved', function() {
-    window.location = window.location.href.replace(/\/editor\//i, '/');
-  });
+    Mercury.on('ready', function() {
+      var link = $('#mercury_iframe').contents().find('#edit_link');
+      Mercury.saveURL = link.data('save-url');
+      link.hide();
+      $('#mercury_iframe').contents().find('#editing_tips').show();
+    });
+    Mercury.on('saved', function() {
+      window.location = window.location.href.replace(/\/editor\//i, '/');
+    });
   },
 
 };

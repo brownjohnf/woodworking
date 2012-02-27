@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require bootstrap
-//= require default
+//= require_tree .
 
 
